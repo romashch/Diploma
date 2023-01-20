@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать аккаунт</title>
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/examples/sign-in/signin.css">
+</head>
+<body class="text-center">
+<main class="form-signin">
+    <form action="/user" method="post">
+        <h1 class="h3 mb-3 fw-normal">Редактировать аккаунт</h1>
+        <div class="form-floating">
+            <input required type="text" class="form-control" id="floatingInput" name="username" th:value="${user.username}">
+            <label for="floatingInput">Логин</label>
+        </div>
+        <div class="form-floating">
+            <input required type="password" class="form-control" id="floatingPassword" name="password" th:value="${user.password}">
+            <label for="floatingPassword">Пароль</label>
+        </div>
+        <input type="hidden" th:value="${user.id}" name="userId">
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Сохранить</button>
+    </form>
+    <p>На <a href="/blog">главную</a></p>
+</main>
+</body>
+</html>

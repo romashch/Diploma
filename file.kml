@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+	<Document>
+		<name>New track</name>
+		<Placemark>
+			<name>Line 1</name>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					50.155914,53.211019
+					50.164776,53.203796
+					50.176921,53.209078
+				</coordinates>
+			</LineString>
+		</Placemark>
+	</Document>
+	</kml>

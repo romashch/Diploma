@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/examples/sign-in/signin.css">
+</head>
+<body class="text-center">
+<main class="form-signin">
+    <form th:action="@{/registration}" method="post">
+        <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
+        <div class="form-floating">
+            <input required type="text" class="form-control" id="floatingInput" name="username">
+            <label for="floatingInput">Логин</label>
+        </div>
+        <div class="form-floating">
+            <input required type="password" class="form-control" id="floatingPassword" name="password">
+            <label for="floatingPassword">Пароль</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Зарегистрироваться</button>
+    </form>
+    <p th:text="${error}" class="error"></p>
+    <p>На <a href="/">главную</a></p>
+</main>
+</body>
+</html>

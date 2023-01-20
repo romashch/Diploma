@@ -1,0 +1,21 @@
+<div th:fragment="header2" xmlns:th="http://www.w3.org/1999/xhtml">
+    <header class="header_2" th:style="|background-color:rgb(5,23,47);|">
+        <div class="container">
+            <div id="header__inner_2">
+                <div id="header__logo">
+                    <h1>Tourclub "SVAROG"</h1>
+                </div>
+                <nav class="nav">
+                    <a class="nav__link" href="/blog">Главная</a>
+                    <a class="nav__link" href="/blog/#blog">Блог</a>
+                    <a class="nav__link" href="/track">Анализ треков</a>
+                    <a class="nav__link" href="/category">К.с. маршрута</a>
+                    <a class="nav__link" href="/user">Аккаунт</a>
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="Выйти" class="btn btn-info" id="logoutButton"/>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </header>
+</div>

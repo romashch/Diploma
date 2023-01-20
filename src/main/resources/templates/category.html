@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"><head>
+    <title>Категория сложности</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+            background-color: #fff;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+
+        p {
+            margin: 0 0 10px;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+
+        .header {
+            width: 100%;
+            height: 113px;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        #header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 35px 0;
+        }
+
+        #header__logo {
+            color: #00bfff;
+        }
+
+        /* Nav */
+
+        .nav {
+            display: flex;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .nav__link {
+            margin-left: 50px;
+            color: #fff;
+            text-decoration: none;
+            line-height: 42px;
+        }
+
+        .nav__link:hover {
+            color: #ccc;
+        }
+
+        /* Footer */
+
+        .copyright {
+            padding: 50px 0;
+            background-color: #05172f;
+        }
+
+        .copyright__text {
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #808080;
+        }
+
+        .copyright__text span {
+            color: #fff;
+        }
+
+        footer a {
+            color: #fff;
+        }
+        footer a:visited {
+            color: #fff;
+        }
+        footer a:active {
+            color: #fff;
+        }
+        footer a:hover {
+            color: #ccc;
+        }
+
+
+        /* Ошибки и не-ошибки */
+
+        .error_2 {
+            color: red;
+            margin: 10px 0 10px 0;
+        }
+
+        .no_error_2 {
+            color: darkgreen;
+            margin: 10px 0 10px 0;
+        }
+
+
+        input {
+            width: 150px;
+        }
+
+        th {
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header th:insert="blocks/header4 :: header4"></header>
+
+<div class="container mt-5">
+    <h1>Расчет категории сложности пешеходного маршрута</h1>
+    <form action="/category" th:object="${lp}" method="post">
+        <h4 th:if="${result != ''}" th:text="${result}" class="no_error_2"></h4>
+        <h4 th:if="${error != ''}" th:text="${error}" class="error_2"></h4>
+        <table>
+            <tr>
+                <th>Длина (км):</th>
+                <td><input type="text" name="l" required="required" th:value="${l}"></td>
+            </tr>
+            <tr>
+                <th>Продолжительность (дней):</th>
+                <td><input type="text" name="t" required="required" th:value="${t}"></td>
+            </tr>
+            <tr>
+                <th colspan="7">Локальные препятствия (шт.)</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>н/к</td>
+                <td>1А</td>
+                <td>1Б</td>
+                <td>2А</td>
+                <td>2Б</td>
+                <td>Более высоких к.т.</td>
+            </tr>
+            <tr>
+                <td class="lpt">Переправы</td>
+                <td><input type="text" th:field="*{lp00}" name="lp00"></td>
+                <td><input type="text" th:field="*{lp01}" name="lp01"></td>
+                <td><input type="text" th:field="*{lp02}" name="lp02"></td>
+                <td><input type="text" th:field="*{lp03}" name="lp03"></td>
+                <td><input type="text" th:field="*{lp04}" name="lp04"></td>
+                <td><input type="text" th:field="*{lp05}" name="lp05"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>н/к</td>
+                <td>1А</td>
+                <td>1Б</td>
+                <td>2А</td>
+                <td>2Б</td>
+                <td>Более высоких к.т.</td>
+            </tr>
+            <tr>
+                <td class="lpt">Перевалы</td>
+                <td><input type="text" th:field="*{lp10}" name="lp10"></td>
+                <td><input type="text" th:field="*{lp11}" name="lp11"></td>
+                <td><input type="text" th:field="*{lp12}" name="lp12"></td>
+                <td><input type="text" th:field="*{lp13}" name="lp13"></td>
+                <td><input type="text" th:field="*{lp14}" name="lp14"></td>
+                <td><input type="text" th:field="*{lp15}" name="lp15"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>н/к</td>
+                <td>1А</td>
+                <td>1Б</td>
+                <td>2А</td>
+                <td>Более высоких к.т.</td>
+            </tr>
+            <tr>
+                <td class="lpt">Вершины</td>
+                <td><input type="text" th:field="*{lp20}" name="lp20"></td>
+                <td><input type="text" th:field="*{lp21}" name="lp21"></td>
+                <td><input type="text" th:field="*{lp22}" name="lp22"></td>
+                <td><input type="text" th:field="*{lp23}" name="lp23"></td>
+                <td><input type="text" th:field="*{lp24}" name="lp24"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>н/к</td>
+                <td>1А</td>
+                <td>1Б</td>
+                <td>2А</td>
+                <td>Более высоких к.т.</td>
+            </tr>
+            <tr>
+                <td class="lpt">Траверсы гребней</td>
+                <td><input type="text" th:field="*{lp30}" name="lp30"></td>
+                <td><input type="text" th:field="*{lp31}" name="lp31"></td>
+                <td><input type="text" th:field="*{lp32}" name="lp32"></td>
+                <td><input type="text" th:field="*{lp33}" name="lp33"></td>
+                <td><input type="text" th:field="*{lp34}" name="lp34"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>н/к</td>
+                <td>1А</td>
+                <td>1Б</td>
+                <td>2А</td>
+                <td>2Б</td>
+                <td>Более высоких к.т.</td>
+            </tr>
+            <tr>
+                <td class="lpt">Каньоны</td>
+                <td><input type="text" th:field="*{lp40}" name="lp40"></td>
+                <td><input type="text" th:field="*{lp41}" name="lp41"></td>
+                <td><input type="text" th:field="*{lp42}" name="lp42"></td>
+                <td><input type="text" th:field="*{lp43}" name="lp43"></td>
+                <td><input type="text" th:field="*{lp44}" name="lp44"></td>
+                <td><input type="text" th:field="*{lp45}" name="lp45"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>1 к.т.</td>
+                <td>2 к.т.</td>
+                <td>3 к.т.</td>
+                <td>4 к.т.</td>
+                <td>Более высоких к.т.</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="lpt">Водные участки</td>
+                <td><input type="text" th:field="*{lp50}" name="lp50"></td>
+                <td><input type="text" th:field="*{lp51}" name="lp51"></td>
+                <td><input type="text" th:field="*{lp52}" name="lp52"></td>
+                <td><input type="text" th:field="*{lp53}" name="lp53"></td>
+                <td><input type="text" th:field="*{lp54}" name="lp54"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Район:</th>
+                <td colspan="6">
+                    <select id="area" name="area">
+                        <div th:each="el : ${areas}" class="alert alert-info mt-2">
+                            <option th:value="${el}" th:text="${el}"></option>
+                        </div>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Автономность:</th>
+                <td colspan="6">
+                    <select id="a" name="a">
+                        <div th:each="el : ${as}" class="alert alert-info mt-2">
+                            <option th:value="${el}" th:text="${el}"></option>
+                        </div>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Перепад высот (км):</th>
+                <td><input type="text" name="dh" th:value="${dh}"></td>
+            </tr>
+        </table>
+        <button id="button" type="submit" class="btn btn-success">Рассчитать</button>
+    </form>
+    <br>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>
